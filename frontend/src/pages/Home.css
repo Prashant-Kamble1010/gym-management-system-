@@ -126,40 +126,64 @@
     line-height: 1.05;
     font-weight: 900;
     margin: 15px 0;
+    color: white;
 }
 
-/* Common typing style */
+.typing-line {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+
+    width: 0;
+
+    border-right: 4px solid #ff4d00;
+
+    animation: typing 2s steps(20, end) forwards;
+}
+
+.body-line {
+    animation-delay: 2.2s;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+.hero-title {
+    font-size: clamp(48px, 5vw, 72px);
+    line-height: 1.05;
+    font-weight: 900;
+    margin: 15px 0;
+    color: white;
+}
+
 .typing-line {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
 
-    color: white;
-
     border-right: 4px solid #ff4d00;
-
-    width: 0;
 }
 
 /* TRANSFORM */
 .first-line {
-    animation:
-        typingFirst 1.5s steps(9, end) forwards,
-        textColor 3s ease-in-out infinite;
-
-    animation-delay: 0s, 1.5s;
+    width: 0;
+    animation: typingFirst 1.5s steps(9) forwards;
 }
 
 /* YOUR BODY */
 .second-line {
-    animation:
-        typingSecond 1.5s steps(9, end) forwards,
-        textColor 3s ease-in-out infinite;
-
-    animation-delay: 1.7s, 3.2s;
+    width: 0;
+    animation: typingSecond 1.5s steps(9) forwards;
+    animation-delay: 1.7s;
 }
 
-/* Typing */
 @keyframes typingFirst {
     from {
         width: 0;
@@ -180,17 +204,19 @@
     }
 }
 
-/* Dynamic text color */
-@keyframes textColor {
-    0% {
-        color: white;
-    }
+.typing-line {
+    animation-timing-function: steps(9, end);
+}
 
-    50% {
-        color: #ff4d00;
-    }
+.first-line,
+.second-line {
+    border-right: 4px solid #ff4d00;
+    animation-name: typingFirst, blinkCursor;
+}
 
-    100% {
-        color: white;
-    }
+.second-line {
+    animation-name: typingSecond, blinkCursor;
+    animation-delay: 1.7s, 0s;
+    animation-duration: 1.5s, 0.7s;
+    animation-iteration-count: 1, infinite;
 }

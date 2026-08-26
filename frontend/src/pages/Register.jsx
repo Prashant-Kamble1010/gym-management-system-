@@ -1,5 +1,56 @@
 import { Link } from "react-router-dom";
 import "./register.css";
+import { registerUser } from "../services/authService";
+
+const handleRegister = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
+    }
+
+    const userData = {
+        firstName: form.firstName.value,
+        lastName: form.lastName.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        password: password,
+        confirmPassword: confirmPassword
+    };
+
+    try {
+        const response = await fetch(
+            "http://localhost:8081/api/auth/register",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userData)
+            }
+        );
+
+        const data = await response.text();
+
+        console.log("Backend response:", data);
+
+        if (response.ok) {
+            alert(data);
+        } else {
+            alert("Registration failed: " + data);
+        }
+
+    } catch (error) {
+        console.error("Registration error:", error);
+        alert("Cannot connect to backend");
+    }
+};
 
 function Register() {
     return (
@@ -22,7 +73,7 @@ function Register() {
                 </div>
 
 
-                <form className="register-form">
+                <form className="register-form" onSubmit={handleRegister}>
 
                     <div className="form-row">
 
@@ -33,11 +84,11 @@ function Register() {
 
                             <input
                                 type="text"
+                                name="firstName"
                                 id="firstName"
                                 placeholder="First name"
                             />
                         </div>
-
 
                         <div className="form-group">
                             <label htmlFor="lastName">
@@ -46,6 +97,7 @@ function Register() {
 
                             <input
                                 type="text"
+                                name="lastName"
                                 id="lastName"
                                 placeholder="Last name"
                             />
@@ -61,6 +113,7 @@ function Register() {
 
                         <input
                             type="email"
+                            name="email"
                             id="registerEmail"
                             placeholder="Enter your email"
                         />
@@ -75,6 +128,7 @@ function Register() {
                         <input
                             type="tel"
                             id="phone"
+                            name="phone"
                             placeholder="Enter your phone number"
                         />
                     </div>
@@ -87,6 +141,7 @@ function Register() {
 
                         <input
                             type="password"
+                            name="password"
                             id="registerPassword"
                             placeholder="Create a password"
                         />
@@ -100,6 +155,7 @@ function Register() {
 
                         <input
                             type="password"
+                            name="confirmPassword"
                             id="confirmPassword"
                             placeholder="Confirm your password"
                         />
