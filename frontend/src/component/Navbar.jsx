@@ -20,7 +20,7 @@ function Navbar() {
                     Login
                 </Link>
 
-                <Link to="/register" className="register-btn">
+                <Link to="/register" className="nav-register-btn">
                     Register
                 </Link>
             </div>
