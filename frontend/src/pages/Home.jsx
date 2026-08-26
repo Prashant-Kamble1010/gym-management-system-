@@ -12,10 +12,10 @@ function Home() {
                         WELCOME TO GYMFIT
                     </p>
 
-                    <h1>
-                        TRANSFORM
+                    <h1 className="hero-title">
+                        <span className="typing-line first-line">TRANSFORM</span>
                         <br />
-                        YOUR BODY
+                        <span className="typing-line second-line">YOUR BODY</span>
                     </h1>
 
                     <p className="hero-description">

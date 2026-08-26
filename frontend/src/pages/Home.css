@@ -120,3 +120,77 @@
 
     border-radius: 10px;
 }
+
+.hero-title {
+    font-size: clamp(48px, 5vw, 72px);
+    line-height: 1.05;
+    font-weight: 900;
+    margin: 15px 0;
+}
+
+/* Common typing style */
+.typing-line {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+
+    color: white;
+
+    border-right: 4px solid #ff4d00;
+
+    width: 0;
+}
+
+/* TRANSFORM */
+.first-line {
+    animation:
+        typingFirst 1.5s steps(9, end) forwards,
+        textColor 3s ease-in-out infinite;
+
+    animation-delay: 0s, 1.5s;
+}
+
+/* YOUR BODY */
+.second-line {
+    animation:
+        typingSecond 1.5s steps(9, end) forwards,
+        textColor 3s ease-in-out infinite;
+
+    animation-delay: 1.7s, 3.2s;
+}
+
+/* Typing */
+@keyframes typingFirst {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes typingSecond {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* Dynamic text color */
+@keyframes textColor {
+    0% {
+        color: white;
+    }
+
+    50% {
+        color: #ff4d00;
+    }
+
+    100% {
+        color: white;
+    }
+}
