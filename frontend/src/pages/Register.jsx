@@ -17,8 +17,7 @@ const handleRegister = async (e) => {
 
     const userData = {
         firstName: form.firstName.value,
-        lastName: form.lastName.value,
-        email: form.email.value,
+        lastName: form.lastName.value, email: form.email.value,
         phone: form.phone.value,
         password: password,
         confirmPassword: confirmPassword
@@ -97,8 +96,8 @@ function Register() {
 
                             <input
                                 type="text"
-                                name="lastName"
                                 id="lastName"
+                                name="lastName"
                                 placeholder="Last name"
                             />
                         </div>
