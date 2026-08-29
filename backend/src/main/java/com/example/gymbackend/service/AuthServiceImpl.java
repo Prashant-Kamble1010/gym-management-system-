@@ -2,6 +2,7 @@ package com.example.gymbackend.service;
 
 import com.example.gymbackend.dto.LoginRequest;
 import com.example.gymbackend.dto.RegisterRequest;
+import com.example.gymbackend.entity.Role;
 import com.example.gymbackend.entity.User;
 import com.example.gymbackend.repository.UserRepository;
 import com.example.gymbackend.security.JwtService;
@@ -48,12 +49,13 @@ public class AuthServiceImpl implements AuthService {
         User user = new User();
 
         user.setFirstname(request.getFirstName());
-        user.setLastName(request.getLastname());
+        user.setLastName(request.getLastName());
         user.setEmail(request.getEmail());
         user.setPhone(request.getPhone());
 
         // 4. Hash password
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRole(Role.MEMBER);
 
         // 5. Save database
         userRepository.save(user);
