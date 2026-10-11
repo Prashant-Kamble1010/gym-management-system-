@@ -1,165 +1,143 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { LockIcon, MailIcon, EyeIcon, EyeOffIcon, DumbbellIcon } from "../component/Icons";
+import Toast from "../component/Toast";
 import "./login.css";
 
 function Login() {
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState(null);
 
-    const navigate = useNavigate();
-    const handleLogin = async (e) => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const form = e.target;
 
-        e.preventDefault();
-        const form = e.target;
-
-        const loginData = {
-            email: form.email.value,
-            password: form.password.value
-        };
-
-        console.log("Login Data:", loginData);
-
-        try {
-
-            const response = await fetch(
-                "http://localhost:8081/api/auth/login",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(loginData)
-                }
-            );
-
-            const data = await response.text();
-
-            console.log("Backend Response:", data);
-
-            if (response.ok) {
-
-                alert("Login successful!");
-                navigate("/dashboard");
-
-            } else {
-
-                alert("Login failed: " + data);
-            }
-
-        } catch (error) {
-
-            console.error("Login Error:", error);
-
-            alert("Cannot connect to server");
-        }
+    const loginData = {
+      email: form.email.value.trim(),
+      password: form.password.value
     };
 
+    try {
+      const response = await fetch("http://localhost:8081/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(loginData)
+      });
 
-    return (
-        <main className="auth-page">
+      const data = await response.text();
 
-            <div className="auth-container">
+      if (response.ok) {
+        if (data && data.length > 20) {
+          localStorage.setItem("token", data);
+        }
+        localStorage.setItem("userEmail", loginData.email);
 
-                <div className="auth-header">
+        setToast({
+          type: "success",
+          message: "Login successful! Redirecting to dashboard..."
+        });
 
-                    <p>WELCOME BACK</p>
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 1000);
+      } else {
+        setToast({
+          type: "error",
+          message: data || "Invalid email or password."
+        });
+      }
+    } catch (error) {
+      console.error("Login Error:", error);
+      // Helpful fallback note
+      setToast({
+        type: "error",
+        message: "Cannot connect to server. Please check backend port 8081."
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
-                    <h1>
-                        LOGIN TO <span>GYMFIT</span>
-                    </h1>
+  return (
+    <main className="simple-auth-page">
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
 
-                    <span>
-                        Continue your fitness journey with us.
-                    </span>
+      <div className="auth-simple-card">
+        <div className="auth-card-top">
+          <Link to="/" className="auth-brand-logo">
+            <span className="logo-icon">
+              <DumbbellIcon size={20} />
+            </span>
+            <span className="logo-name">
+              GYM<span>FIT</span>
+            </span>
+          </Link>
+          <h2>Welcome Back</h2>
+          <p>Sign in to your GymFit member account</p>
+        </div>
 
-                </div>
-
-
-                <form
-                    className="auth-form"
-                    onSubmit={handleLogin}
-                >
-
-                    <div className="form-group">
-
-                        <label htmlFor="email">
-                            Email Address
-                        </label>
-
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            required
-                        />
-
-                    </div>
-
-
-                    <div className="form-group">
-
-                        <label htmlFor="password">
-                            Password
-                        </label>
-
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Enter your password"
-                            required
-                        />
-
-                    </div>
-
-
-                    <div className="form-options">
-
-                        <label className="remember-me">
-
-                            <input
-                                type="checkbox"
-                                name="rememberMe"
-                            />
-
-                            <span>
-                                Remember me
-                            </span>
-
-                        </label>
-
-                        <a href="#">
-                            Forgot Password?
-                        </a>
-
-                    </div>
-
-
-                    <button
-                        type="submit"
-                        className="auth-btn"
-                    >
-                        LOGIN
-                        <span> →</span>
-                    </button>
-
-                </form>
-
-
-                <div className="auth-footer">
-
-                    <p>
-                        Don't have an account?
-                    </p>
-
-                    <Link to="/register">
-                        Create an Account
-                    </Link>
-
-                </div>
-
+        <form onSubmit={handleLogin} className="auth-form-fields">
+          <div className="input-field">
+            <label htmlFor="email">Email Address</label>
+            <div className="input-wrap">
+              <MailIcon size={18} className="input-icon" />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your.email@example.com"
+                required
+              />
             </div>
+          </div>
 
-        </main>
-    );
+          <div className="input-field">
+            <label htmlFor="password">Password</label>
+            <div className="input-wrap">
+              <LockIcon size={18} className="input-icon" />
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                placeholder="Enter password"
+                required
+              />
+              <button
+                type="button"
+                className="eye-toggle-btn"
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label="Toggle password visibility"
+              >
+                {showPassword ? <EyeOffIcon size={18} /> : <EyeIcon size={18} />}
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" className="auth-submit-btn" disabled={loading}>
+            {loading ? "Signing in..." : "Login to Account"}
+          </button>
+        </form>
+
+        <div className="auth-card-bottom">
+          <p>Don't have an account yet?</p>
+          <Link to="/register" className="auth-link-bold">
+            Create an Account Here
+          </Link>
+        </div>
+      </div>
+    </main>
+  );
 }
 
 export default Login;

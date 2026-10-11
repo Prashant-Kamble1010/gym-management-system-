@@ -1,244 +1,215 @@
+/* ========================================================
+   CLEAN & BEAUTIFUL ABOUT PAGE STYLES
+   ======================================================== */
+
 .about-page {
-    min-height: calc(100vh - 70px);
-
-    background-color: #181818;
-
-    color: white;
+  background-color: var(--gym-bg);
+  color: var(--gym-text);
+  overflow-x: hidden;
 }
 
-
-/* =========================
-   HERO
-========================= */
-
-.about-hero {
-    padding: 80px 30px 60px;
-
-    text-align: center;
+.about-header {
+  padding: 70px 24px 60px;
+  background: linear-gradient(180deg, #131720 0%, #0f1218 100%);
+  border-bottom: 1px solid var(--gym-border);
+  text-align: center;
 }
 
-.about-label {
-    color: #ff4d00;
-
-    font-size: 14px;
-    font-weight: 700;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 15px;
+.about-header-content {
+  max-width: 760px;
+  margin: 0 auto;
 }
 
-.about-hero h1 {
-    margin: 0;
-
-    font-size: clamp(48px, 6vw, 80px);
-
-    font-weight: 900;
-
-    line-height: 1;
+.about-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gym-orange);
+  background: var(--gym-orange-soft);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 16px;
 }
 
-.about-hero h1 span {
-    color: #ff4d00;
+.about-header h1 {
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 800;
+  margin-bottom: 16px;
 }
 
-.about-intro {
-    max-width: 650px;
-
-    margin: 25px auto 0;
-
-    color: #aaa;
-
-    font-size: 17px;
-
-    line-height: 1.7;
+.about-header p {
+  color: var(--gym-text-secondary);
+  font-size: 16px;
+  line-height: 1.7;
 }
 
-
-/* =========================
-   STORY
-========================= */
-
-.about-story {
-    max-width: 1200px;
-
-    margin: 0 auto;
-
-    padding: 50px 60px 80px;
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 70px;
-
-    align-items: center;
+/* Story */
+.about-story-section {
+  padding: 80px 24px;
+  background: #0f1218;
 }
 
-
-/* IMAGE */
-
-.story-image {
-    width: 100%;
-
-    height: 450px;
-
-    overflow: hidden;
-
-    border-radius: 12px;
+.about-story-grid {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
 }
 
-.story-image img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-
-    transition: transform 0.5s ease;
+.story-img-wrap {
+  width: 100%;
+  height: 440px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--gym-border);
 }
 
-.story-image:hover img {
-    transform: scale(1.05);
+.about-story-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-
-/* CONTENT */
-
-.story-content h2 {
-    margin: 10px 0 25px;
-
-    font-size: 38px;
-
-    font-weight: 800;
+.story-info h2 {
+  font-size: clamp(24px, 2.5vw, 34px);
+  font-weight: 800;
+  margin-bottom: 16px;
 }
 
-.story-content p:not(.about-label) {
-    color: #999;
-
-    font-size: 16px;
-
-    line-height: 1.8;
-
-    margin-bottom: 18px;
+.story-info p {
+  color: var(--gym-text-secondary);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 16px;
 }
 
-
-/* =========================
-   STATISTICS
-========================= */
-
-.stats-section {
-    max-width: 1200px;
-
-    margin: 0 auto;
-
-    padding: 20px 60px 100px;
-
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 20px;
+.about-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gym-border);
 }
 
-.stat-card {
-    padding: 35px 20px;
-
-    text-align: center;
-
-    background-color: #202020;
-
-    border: 1px solid #303030;
-
-    border-radius: 10px;
-
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease;
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #ffffff;
 }
 
-.stat-card:hover {
-    transform: translateY(-8px);
+/* Stats */
+.about-stats-strip {
+  background: #131722;
+  border-top: 1px solid var(--gym-border);
+  border-bottom: 1px solid var(--gym-border);
+  padding: 50px 24px;
+}
 
-    border-color: #ff4d00;
+.stats-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
 }
 
 .stat-card h3 {
-    margin: 0 0 10px;
-
-    color: #ff4d00;
-
-    font-size: 42px;
-
-    font-weight: 900;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--gym-orange);
+  margin-bottom: 6px;
 }
 
 .stat-card p {
-    margin: 0;
-
-    color: #bbb;
-
-    font-size: 15px;
+  font-size: 14px;
+  color: var(--gym-muted);
 }
 
+/* Facilities */
+.facilities-grid {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
 
-/* =========================
-   TABLET
-========================= */
+.facility-item {
+  background: var(--gym-card);
+  border: 1px solid var(--gym-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.facility-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.facility-item h4 {
+  font-size: 17px;
+  font-weight: 700;
+  padding: 20px 20px 8px;
+}
+
+.facility-item p {
+  font-size: 13px;
+  color: var(--gym-muted);
+  line-height: 1.6;
+  padding: 0 20px 20px;
+}
+
+/* CTA */
+.about-cta {
+  padding: 70px 24px;
+  background: #0f1218;
+}
+
+.about-cta-content {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--gym-card);
+  border: 1px solid var(--gym-border);
+  border-radius: var(--radius-lg);
+  padding: 48px 32px;
+}
+
+.about-cta-content h2 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.about-cta-content p {
+  color: var(--gym-text-secondary);
+  font-size: 15px;
+  margin-bottom: 24px;
+}
+
+.about-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
 
 @media (max-width: 900px) {
-
-    .about-story {
-        grid-template-columns: 1fr;
-
-        padding: 40px 30px 60px;
-
-        gap: 40px;
-    }
-
-    .story-image {
-        height: 400px;
-    }
-
-    .stats-section {
-        grid-template-columns: repeat(2, 1fr);
-
-        padding: 20px 30px 70px;
-    }
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 600px) {
-
-    .about-hero {
-        padding: 60px 20px 40px;
-    }
-
-    .about-hero h1 {
-        font-size: 48px;
-    }
-
-    .about-story {
-        padding: 30px 20px 50px;
-    }
-
-    .story-image {
-        height: 320px;
-    }
-
-    .story-content h2 {
-        font-size: 30px;
-    }
-
-    .stats-section {
-        grid-template-columns: 1fr;
-
-        padding: 20px;
-    }
+  .about-story-grid {
+    grid-template-columns: 1fr;
+  }
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .facilities-grid {
+    grid-template-columns: 1fr;
+  }
 }

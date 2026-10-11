@@ -1,61 +1,196 @@
-.navbar {
-    height: 70px;
-    padding: 0 60px;
+/* ========================================================
+   CLEAN & BEAUTIFUL NAVBAR STYLES
+   ======================================================== */
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    background-color: #111111;
-    color: white;
+.site-navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(15, 18, 24, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gym-border);
+  z-index: 1000;
 }
 
-.logo {
-    font-size: 26px;
-    font-weight: 800;
-    color: white;
-    text-decoration: none;
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 72px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.logo span {
-    color: #ff4d00;
+/* Logo */
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
 }
 
-.nav-links {
-    display: flex;
-    gap: 35px;
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--gym-orange);
+  color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.nav-links a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
+.logo-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
 }
 
-.nav-links a:hover {
-    color: #ff4d00;
+.logo-name span {
+  color: var(--gym-orange);
 }
 
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+/* Desktop Links */
+.desktop-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-item {
+  color: var(--gym-text-secondary);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active {
+  color: #ffffff;
+  background: var(--gym-orange-soft);
+  color: var(--gym-orange);
+  font-weight: 600;
+}
+
+/* Actions */
+.nav-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .login-btn {
-    color: white;
-    text-decoration: none;
+  color: var(--gym-text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: color 0.2s;
 }
 
-.nav-register-btn {
-    padding: 10px 20px;
-    background-color: #ff4d00;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    display: inline-block;
+.login-btn:hover {
+  color: #ffffff;
 }
 
-.nav-register-btn:hover {
-    background-color: #e64300;
+.register-btn {
+  background: var(--gym-orange);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.register-btn:hover {
+  background: var(--gym-orange-hover);
+  transform: translateY(-1px);
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--gym-border);
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Mobile Drawer */
+.mobile-menu-drawer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px 24px;
+  background: #131720;
+  border-bottom: 1px solid var(--gym-border);
+  gap: 10px;
+}
+
+.mobile-nav-item {
+  color: var(--gym-text-secondary);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+.mobile-nav-item.active {
+  color: var(--gym-orange);
+  background: var(--gym-orange-soft);
+}
+
+.mobile-nav-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--gym-border);
+}
+
+.mobile-login-btn {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid var(--gym-border);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mobile-register-btn {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  background: var(--gym-orange);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 820px) {
+  .desktop-nav-links {
+    display: none;
+  }
+  .login-btn {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: flex;
+  }
 }
